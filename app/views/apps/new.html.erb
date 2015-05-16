@@ -1,0 +1,13 @@
+<h2>App registration</h2>
+
+<%= simple_form_for(@app) do |f| %>
+  <div class="form-inputs">
+    <%= f.input :url1 %>
+    <%= f.input :url2 %>
+    <%= f.input :subdomain %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Enter your app" %>
+  </div>
+<% end %>
