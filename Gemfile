@@ -61,3 +61,4 @@ group :development, :test do
   gem 'spring'
 end
 gem 'unicorn'
+gem 'rails_12factor', group: :production
