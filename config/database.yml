@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: theRokuBalance_production
-  username: theRokuBalance
+  database: therokubalance_production
+  username: therokubalance
   password: <%= ENV['THEROKUBALANCE_DATABASE_PASSWORD'] %>
