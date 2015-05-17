@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
 
-
   authenticated :user do
-
-    root :to => "apps#index", :as => "authenticated_root"
     resources :apps
     resources :invitations, only: [:new, :create]
   end
