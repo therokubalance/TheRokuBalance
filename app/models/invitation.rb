@@ -10,7 +10,7 @@
 #
 
 class Invitation < ActiveRecord::Base
-
+  attr_accessor :email
   before_create :generate_token
 
   protected

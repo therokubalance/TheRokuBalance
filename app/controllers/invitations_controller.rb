@@ -6,8 +6,8 @@ class InvitationsController < ApplicationController
   def create
     @invitation = Invitation.new(invitation_params)
     if @invitation.save
-      Invitation.invitation_token_email(@invitation).deliver
-      redirect_to action: "index"
+      InvitationMailer.token_invitation_email(@invitation).deliver
+      redirect_to authenticated_root
     else
       render "new"
     end

@@ -43,6 +43,8 @@ gem 'rack-cors', :require => 'rack/cors'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem "letter_opener"
+
   gem 'byebug'
 
   gem 'rspec-rails', '~> 3.0'
