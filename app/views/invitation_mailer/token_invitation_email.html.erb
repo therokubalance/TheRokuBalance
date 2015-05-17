@@ -3,4 +3,4 @@
 <h3>The following is a unique token</h3>
 <h3>register with it: <strong><%= @invitation.token %></strong></h3>
 
-<%= link_to "Register page", new_user_registration_url %>
+<%= link_to "Registration page", new_user_registration_url(invitation_code: @invitation.token) %>

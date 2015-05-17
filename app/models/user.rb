@@ -40,7 +40,6 @@ class User < ActiveRecord::Base
   def assign_invitation
     invitation = Invitation.where(token: self.invitation_token).take
     invitation.user_id = self.id
-    byebug
     invitation.save
   end
   def validate_invitations
