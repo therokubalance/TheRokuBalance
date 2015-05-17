@@ -28,7 +28,7 @@ class App < ActiveRecord::Base
   after_update :update_app
   after_destroy do |app|
     delete_nginx_config_file(app.subdomain)
-    reload_nginx
+    App.reload_nginx
   end
 
   def self.switch_apps
@@ -44,20 +44,20 @@ class App < ActiveRecord::Base
         f.puts "include #{SITES_ENABLED_HALF_1};"
       end
     end
-    reload_nginx
+    App.reload_nginx
   end
 
   private
 
   def register_app
     create_nginx_config_file
-    reload_nginx
+    App.reload_nginx
   end
 
   def update_app
     delete_nginx_config_file(self.subdomain_was)
     create_nginx_config_file
-    reload_nginx
+    App.reload_nginx
   end
 
   def delete_nginx_config_file(subdomain=nil)
@@ -97,7 +97,7 @@ class App < ActiveRecord::Base
     end
   end
 
-  def reload_nginx
+  def self.reload_nginx
     system "nginx -s reload"
   end
 
