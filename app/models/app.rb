@@ -14,8 +14,7 @@
 class App < ActiveRecord::Base
   validates :url1, presence: true
   validates :url2, presence: true
-  validates :subdomain, presence: true
-  validates :subdomain, uniqueness: true
+  validates :subdomain, presence: true, uniqueness: true
   belongs_to :user
   after_validation :strip_herokudomain
 
