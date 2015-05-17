@@ -1,20 +1,14 @@
 module Api
   class UsersController < ApplicationController
-    def index
-      render nothing: true
-    end
+    before_action :authenticate_token!, except: [:login]
+
     def login
-      
+      user = User.find_by_email(params[:email])
+      if user && user.valid_password?(params[:password])
+        render json: {auth_token: user.auth_token}, status: :ok
+      else
+        render json: {errors: "Unauthorized!"}, status: :unauthorized
+      end
     end
-    def create
-
-      user = User.new(article_params)
-    end
-
-    private
-    def user_params
-      params.require(:app).permit(:app1,:app2,:subdomain)    
-    end
-
   end
 end
