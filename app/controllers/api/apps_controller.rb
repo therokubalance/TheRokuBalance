@@ -26,7 +26,8 @@ module Api
       if app && app.update(app_params)
         render json: {updated: "Tryceratops #{app.subdomain}"}, status: :ok
       else
-        render json: {errors: app.errors}, status: 417 
+        ans = app != nil ? app.errors : "couldn't update"
+        render json: {errors:  ans }, status: 417 
       end
     end
     private
