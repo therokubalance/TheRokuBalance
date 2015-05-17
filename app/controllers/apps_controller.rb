@@ -42,11 +42,12 @@ class AppsController < ApplicationController
   end
 
   def set_app
-    @app = App.find_by_subdomain(params[:id]) || App.find(params[:id])
+    @app = current_user.apps.find_by_subdomain(params[:id])
+    @app ||= current_user.apps.find(params[:id])
   end
 
   def app_params
-    params.require(:app).permit(:url1,:url2,:subdomain)    
+    params.require(:app).permit(:url1,:url2,:subdomain)
   end
 
 end
