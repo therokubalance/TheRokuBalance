@@ -1,5 +1,5 @@
 module Api
-  class UsersController < ApplicationController
+  class UsersController < Api::ApplicationController
     before_action :authenticate_token!, except: [:login]
 
     def login
