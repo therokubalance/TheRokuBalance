@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+      <div class="title-wrapper">
+        <h2>Invitation Request</h2>
+      </div>
+
+      <%= simple_form_for @invitation_request do |f| %>
+        <%= f.input :email %>
+        <%= f.submit "Request invitation", class: "btn btn-lg btn-block btn-success" %>
+      <% end %>
+
+    </div>
+  </div>
+</div>

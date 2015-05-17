@@ -25,6 +25,12 @@ ActiveRecord::Schema.define(version: 20150517183535) do
     t.integer  "user_id"
   end
 
+  create_table "invitation_requests", force: :cascade do |t|
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "invitations", force: :cascade do |t|
     t.string   "token"
     t.datetime "created_at", null: false

@@ -2,7 +2,10 @@
   <h1 class="text-center" style="margin-top: 0; padding-top: 80px; font-weight: 600; color: white; font-size: 45px;">Love Heroku? Want to stay free and 24/7 available?</h1>
   <h3 class="text-center" style="color: white; font-weight: 400; margin-bottom: 50px;">We help you setup so you can stay free and available forever. Learn More.</h3>
   <div class="text-center">
-    <button class="btn btn-default" style="background-color: #34C67F; border: none; color: white; padding: 15px 30px; letter-spacing: 1px;">REQUEST AN INVITE</button>
+
+    <%= link_to "REQUEST AN INVITE", new_invitation_request_path,
+      class: "btn btn-default btn-request-invitation" %>
+
   </div>
 </div>
 
@@ -12,7 +15,7 @@
   <h4 class="text-center" style="margin: 0 300px">Heroku has released new tiers where free features are becoming thinner and thinner. We provide a solution by helping you switch easily between two servers, and therefore helping you maintain free forever.</h4>
 </div>
 
-<div id="features" style="width: 100%; height: 470px; background-color: #146973; color: white">
+<div id="features" style="width: 100%; height: 550px; background-color: #146973; color: white">
   <div class="container">
     <h2 class="text-center" style="color: white; padding-top: 100px">Awesome Features</h2>
     <hr style="margin: 20px 500px; border: solid 2px white; border-radius: 10px">
@@ -35,7 +38,54 @@
   </div>
   </div>
 
-  <footer style="width: 100%; height: 100px; background-color: #2E3234; margin-top: 0px">
+  <footer class="footer" style="width: 100%; height: 100px; background-color: #2E3234; margin-top: 0px; padding-top: 30px; position: fixed; bottom: 0;">
+    <!-- Button trigger modal -->
+    <div class="text-center">
+      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+        Look at our quick tutorial
+      </button>
+    </div>
+
   </footer>
 </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Quick Setup</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-11 col-md-offset-1">
+                <h4>1. Setup both of your heroku servers with the same rails application.</h4>
+                <h4>You can do this by getting two heroku repositories:</h4>
+                <%= image_tag("git_urls.jpg", :size => "455x82", :alt => "git urls") %>
+                <h4>And then adding them to your git remote:</h4>
+                <%= image_tag("git_remotes.png", :size => "455x50", :alt => "git remotes") %>
+                <h4>Now you can push to each of your heroku remotes:</h4>
+                <%= image_tag("git_push.png", :size => "185x50", :alt => "git push") %>
+              </div>
+              <div class="col-md-10 col-md-offset-1">
+                <h4>2. Config both of your repositories so that they're both pointing to the same postgres database, you can do that with the follwing code:</h4>
+                <pre><code>$ heroku config | grep DATABASE_URL  --app sushi DATABASE_URL => postgres://database_url
+                </code></pre>
+                <pre><code>$ heroku config:add DATABASE_URL=postgres://database_url --app sushi-analytics
+                </code></pre>
+              </div>
+              <div class="col-md-10 col-md-offset-1">
+                <h4>3. Register on TherokuBalance, install our <a href="https://rubygems.org/gems/theroku">gem theroku</a> and get running fast.</h4>
+              </div>
+              <div class="col-md-10 col-md-offset-1">
+                <h4>4. And that's it! You're all set up. Enjoy.</h4>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 

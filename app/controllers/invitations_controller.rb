@@ -17,6 +17,7 @@ class InvitationsController < ApplicationController
       else
         render "new"
       end
+
     else
       redirect_to authenticated_root_path
     end

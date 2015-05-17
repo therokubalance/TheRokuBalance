@@ -4,7 +4,7 @@
 @import "font-awesome";
 
 @import "apps";
-
+@import "invitation_requests";
 
 body {
   padding-top: $navbar-height;
@@ -30,4 +30,8 @@ body {
 
 .title-wrapper {
   margin-bottom: 50px;
+}
+
+.modal-backdrop {
+  z-index: -1;
 }
