@@ -16,6 +16,7 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :inet
 #  last_sign_in_ip        :inet
+#  auth_token             :string
 #
 
 class User < ActiveRecord::Base
@@ -24,4 +25,16 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :apps
+
+
+  def generate_auth_token
+    return if auth_token.present?
+    self.auth_token = generated_token
+  end
+
+  def generated_token
+    SecureRandom.uuid.gsub(/\-/,'')
+  end
+
+
 end

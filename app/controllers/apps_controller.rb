@@ -46,7 +46,7 @@ class AppsController < ApplicationController
   end
 
   def app_params
-    params.require(:app).permit(:subdomain,:url1,:url2)
+    params.require(:app).permit(:url1,:url2,:subdomain)    
   end
 
 end

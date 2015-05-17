@@ -8,12 +8,13 @@
 #  subdomain  :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  user_id    :integer
 #
 
 class App < ActiveRecord::Base
   validates :url1, presence: true
   validates :url2, presence: true
-  validates :subdomain, presence: true
+  validates :subdomain, presence: true, uniqueness: true
   belongs_to :user
   after_validation :strip_herokudomain
   after_create :register_app
@@ -24,6 +25,7 @@ class App < ActiveRecord::Base
   def strip_herokudomain
     self.url1.gsub!('.herokuapp.com','') if self.url1 != nil
     self.url2.gsub!('.herokuapp.com','') if self.url2 != nil
+
   end
 
   def register_app
