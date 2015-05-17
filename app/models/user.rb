@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   has_many :apps
   has_one :invitation
   before_create :generate_auth_token
-
+  # attr_accessor :invitation_token
 
   def generate_auth_token
     begin
