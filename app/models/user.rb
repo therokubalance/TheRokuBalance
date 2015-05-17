@@ -22,18 +22,31 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  attr_accessor :invitation_token
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  validate :invitation
   has_many :apps
   has_one :invitation
   before_create :generate_auth_token
-  # attr_accessor :invitation_token
+  after_create :assign_invitation
 
   def generate_auth_token
     begin
       self.auth_token = SecureRandom.urlsafe_base64
     end while User.exists?(auth_token: self.auth_token)
   end
-
+  private
+  def assign_invitation
+    invitation = Invitation.where(token: invitation_token).take
+    invitation.user_id = self.id
+    invitation.save
+  end
+  def invitation
+    invitation = Invitation.where(token: invitation_token).take
+    unless (invitation && invitation.user_id == nil)
+      errors.add(:Invitation, " was invalid")
+    end
+  end
 
 end
