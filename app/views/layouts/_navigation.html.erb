@@ -14,9 +14,12 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="font-size: 20px">
             <ul class="nav navbar-nav navbar-right">
               <% if user_signed_in? %>
-              <li>
-                <%= link_to("Invite a friend", new_invitation_path) %>
-              </li>
+                <li class="<%= 'active' if params[:controller] == 'invitations' %>">
+                  <%= link_to("Invite a friend", new_invitation_path) %>
+                </li>
+                <li class="<%= 'active' if params[:controller] == 'apps' %>">
+                  <%= link_to("Apps", apps_path) %>
+                </li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle avatar" data-toggle="dropdown">
                     <strong><%= current_user.email %></strong>
