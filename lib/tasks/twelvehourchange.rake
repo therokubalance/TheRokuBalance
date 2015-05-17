@@ -1,7 +1,4 @@
-desc "call method to change the app"
+desc "call method to switch the apps"
 task :app_changer => :environment do
-  apps = App.all
-  apps.each do |app|  
-    app.switch
-  end
+  App.switch_apps
 end
