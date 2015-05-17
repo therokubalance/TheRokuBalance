@@ -89,8 +89,12 @@ class App < ActiveRecord::Base
     conf_file1 = site_conf_file(1,opts[:subdomain])
     conf_file2 = site_conf_file(2,opts[:subdomain])
 
-    File.open(conf_file1, 'w') { |f| f.puts subdomain_conf(url: opts[:url1]) }
-    File.open(conf_file2, 'w') { |f| f.puts subdomain_conf(url: opts[:url2]) }
+    File.open(conf_file1, 'w') do |f|
+      f.puts subdomain_conf(url: opts[:url1])
+    end
+    File.open(conf_file2, 'w') do |f|
+      f.puts subdomain_conf(url: opts[:url2])
+    end
   end
 
   def reload_nginx
