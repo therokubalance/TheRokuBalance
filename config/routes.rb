@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'pages/index'
+
   authenticated :user do
 
     root :to => "apps#index", :as => "authenticated_root"
