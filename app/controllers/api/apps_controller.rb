@@ -1,13 +1,26 @@
 module Api
   class AppsController < Api::ApplicationController
     before_action :authenticate_token!
+
+    def index
+      apps = @current_user.apps
+      data = apps.map do |a|
+        {
+          subdomain: a.subdomain,
+          url1: a.url1,
+          url2: a.url2,
+        }
+      end
+      render json: data, status: :ok
+    end
+
     def create
       app = App.new(app_params)
       app.user_id = @current_user.id
       if app.save
         render json: {Tryceratops: "created"}, status: :ok
       else
-        render json: {errors: app.errors}, status: 417 
+        render json: {errors: app.errors}, status: 417
       end
     end
 
@@ -17,7 +30,7 @@ module Api
       if app && app.destroy
         render json: {deleted: "Tryceratops #{tryceratops_name}"}, status: :ok
       else
-        render json: {errors: "couldn't delete app"}, status: 417 
+        render json: {errors: "couldn't delete app"}, status: 417
       end
     end
 
@@ -27,7 +40,7 @@ module Api
         render json: {updated: "Tryceratops #{app.subdomain}"}, status: :ok
       else
         ans = app != nil ? app.errors : "couldn't update"
-        render json: {errors:  ans }, status: 417 
+        render json: {errors:  ans }, status: 417
       end
     end
     private

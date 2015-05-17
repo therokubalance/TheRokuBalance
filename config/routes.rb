@@ -6,11 +6,11 @@ Rails.application.routes.draw do
   end
 
   root 'users#index'
-  
+
   devise_for :users
   resources :users, only: [:index]
   namespace :api do
-    resources :apps ,only:[:create, :update, :destroy]
+    resources :apps ,only:[:create, :update, :destroy, :index]
     post "/login" => 'users#login'
   end
 end
