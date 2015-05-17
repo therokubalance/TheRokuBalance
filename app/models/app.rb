@@ -69,13 +69,13 @@ class App < ActiveRecord::Base
     begin
       File.delete(conf_file1)
     rescue Errno::ENOENT => e
-      logger.warning "conf file for site * #{self.subdomain} * doesn't exist (half1)"
+      logger.warn "conf file for site * #{self.subdomain} * doesn't exist (half1)"
     end
 
     begin
       File.delete(conf_file2)
     rescue Errno::ENOENT => e
-      logger.warning "conf file for site * #{self.subdomain} * doesn't exist (half2)"
+      logger.warn "conf file for site * #{self.subdomain} * doesn't exist (half2)"
     end
 
   end
