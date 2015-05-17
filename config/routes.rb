@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   devise_for :users, path: "auth", path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }
   resources :users, only: [:index]
   namespace :api do
-    resources :users 
+    resources :apps ,only:[:create, :update, :destroy]
+    post "/login" => 'users#login'
   end
 end
