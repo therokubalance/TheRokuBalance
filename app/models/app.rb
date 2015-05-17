@@ -66,9 +66,17 @@ class App < ActiveRecord::Base
 
     conf_file1 = site_conf_file(1,subdomain)
     conf_file2 = site_conf_file(2,subdomain)
+    begin
+      File.delete(conf_file1)
+    rescue Errno::ENOENT => e
+      logger.warning "conf file for site * #{self.subdomain} * doesn't exist (half1)"
+    end
 
-    File.delete(conf_file1)
-    File.delete(conf_file2)
+    begin
+      File.delete(conf_file2)
+    rescue Errno::ENOENT => e
+      logger.warning "conf file for site * #{self.subdomain} * doesn't exist (half2)"
+    end
 
   end
 
