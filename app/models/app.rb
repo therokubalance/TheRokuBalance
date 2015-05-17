@@ -12,9 +12,13 @@
 #
 
 class App < ActiveRecord::Base
-  validates :url1, presence: true
-  validates :url2, presence: true
-  validates :subdomain, presence: true, uniqueness: true
+  SUBDOMAIN_REGEX = /\A[a-z]{2,}[a-z0-9-_]+\Z/i
+
+  validates :user, presence: true
+  validates :url1, presence: true, format: {with: SUBDOMAIN_REGEX }
+  validates :url2, presence: true, format: {with: SUBDOMAIN_REGEX }
+  validates :subdomain, presence: true, uniqueness: true, format: {with: SUBDOMAIN_REGEX }
+
   belongs_to :user
   after_validation :strip_herokudomain
   after_create :register_app
