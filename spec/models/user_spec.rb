@@ -17,6 +17,7 @@
 #  current_sign_in_ip     :inet
 #  last_sign_in_ip        :inet
 #  auth_token             :string
+#  available_invitations  :integer          default(2)
 #
 
 require 'rails_helper'

@@ -17,6 +17,7 @@
 #  current_sign_in_ip     :inet
 #  last_sign_in_ip        :inet
 #  auth_token             :string
+#  available_invitations  :integer          default(2)
 #
 
 class User < ActiveRecord::Base
@@ -25,7 +26,7 @@ class User < ActiveRecord::Base
   attr_accessor :invitation_token
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  validate :validate_invitations
+  validate :validate_invitations, on: :create
   has_many :apps
   has_one :invitation
   before_create :generate_auth_token
@@ -42,8 +43,8 @@ class User < ActiveRecord::Base
     invitation.user_id = self.id
     invitation.save
   end
-  def validate_invitations
-    invitation = Invitation.where(token: self.invitation_token, user_id: nil).take
+  def validate_invitations 
+    invitation = Invitation.where(token: self.invitation_token, user_id: self.id).take
     unless (invitation)
       errors.add(:invitation, " was invalid")
     end
