@@ -1,5 +1,5 @@
 <div class="list-group">
-  <%= link_to apps_path, class: "list-group-item #{'active' if params[:action] == 'index' }" do %>
+  <%= link_to apps_path, class: "list-group-item #{'active' if ['index','create'].include?(params[:action]) }" do %>
     <span class="glyphicon glyphicon-plus pull-right"></span>
     New App
   <% end %>
