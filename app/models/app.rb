@@ -18,7 +18,7 @@ class App < ActiveRecord::Base
   after_validation :strip_herokudomain
 
   def strip_herokudomain
-    self.url1.gsub('.herokuapp.com','') if self.url1 != nil
-    self.url2.gsub('.herokuapp.com','') if self.url2 != nil
+    self.url1.gsub!('.herokuapp.com','') if self.url1 != nil
+    self.url2.gsub!('.herokuapp.com','') if self.url2 != nil
   end
 end
