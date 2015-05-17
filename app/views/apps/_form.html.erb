@@ -1,12 +1,32 @@
 <%= simple_form_for(@app) do |f| %>
   <%= f.error_notification %>
-  <div class="form-inputs">
-    <%= f.input :subdomain %>
-    <%= f.input :url1 %>
-    <%= f.input :url2 %>
+  <div class="form-group">
+    <label class="col-sm-3" for="subdomain">TheRokuBalance Subdomain</label>
+    <div class="input-group input-group-lg col-sm-9">
+      <span class="input-group-addon">http://</span>
+      <%= f.input :subdomain, placeholder: "app-name", wrapper: false, class: "form-control", label: false %>
+      <span class="input-group-addon input-group-addon-suffix">therokubalance.com</span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="url1" class="col-sm-3">Heroku app url 1</label>
+    <div class="input-group input-group-lg col-sm-9">
+      <span class="input-group-addon">http://</span>
+      <%= f.input :url1, placeholder: "url1", wrapper: false, class: "form-control", label: false %>
+      <span class="input-group-addon input-group-addon-suffix">herokuapp.com</span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="subdomain" class="col-sm-3">Heroku app url 2</label>
+    <div class="input-group input-group-lg col-sm-9">
+      <span class="input-group-addon">http://</span>
+      <%= f.input :url2, placeholder: "url2", wrapper: false, class: "form-control", label: false %>
+      <span class="input-group-addon input-group-addon-suffix">herokuapp.com</span>
+    </div>
+
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, class: "btn btn-success" %>
+  <div class="form-group pull-right">
+    <%= f.button :submit, class: "btn btn-success btn-lg" %>
   </div>
 <% end %>

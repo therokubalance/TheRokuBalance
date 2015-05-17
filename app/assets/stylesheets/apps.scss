@@ -1,3 +1,15 @@
 // Place all the styles related to the apps controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.new_app, .edit_app {
+  .input-group-addon.input-group-addon-suffix {
+    text-align: left;
+    width: 240px;
+  }
+
+  .btn-success {
+    width: 240px;
+  }
+}
