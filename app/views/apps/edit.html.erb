@@ -1,10 +1,14 @@
 <div class="row">
   <div class="col-xs-6 col-md-3">
-    <h3>Your Apps</h3>
+    <div class="title-wrapper">
+      <h3>Your Apps</h3>
+    </div>
     <%= render "apps/apps_navigation" %>
   </div>
   <div class="col-xs-6 col-md-9">
-    <h2>Editing <strong><%= @app.subdomain %></strong> </h2>
+    <div class="title-wrapper">
+      <h2>Editing <strong><%= @app.subdomain %></strong> </h2>
+    </div>
     <%= render "apps/form" %>
   </div>
 </div>
