@@ -25,7 +25,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :apps
+  has_one :invitation
   before_create :generate_auth_token
+
 
   def generate_auth_token
     begin
