@@ -1,0 +1,12 @@
+<div class="list-group">
+  <%= link_to apps_path, class: "list-group-item #{'active' if params[:action] == 'index' }" do %>
+    <span class="glyphicon glyphicon-plus pull-right"></span>
+    New App
+  <% end %>
+  <% @apps.each do |a| %>
+    <%= link_to edit_app_path(a), class: "list-group-item #{'active' if @app == a }" do %>
+      <span class="glyphicon glyphicon-chevron-right pull-right"></span>
+      <%= a.subdomain %>
+    <% end %>
+  <% end %>
+</div>
