@@ -64,8 +64,8 @@ class App < ActiveRecord::Base
     logger.info "Deleting * #{self.subdomain_was}.therokubalance.com *..."
     subdomain ||= self.subdomain
 
-    conf_file1 = site_conf_file(1,opts[:subdomain])
-    conf_file2 = site_conf_file(2,opts[:subdomain])
+    conf_file1 = site_conf_file(1,subdomain)
+    conf_file2 = site_conf_file(2,subdomain)
 
     File.delete(config_file1)
     File.delete(config_file2)
