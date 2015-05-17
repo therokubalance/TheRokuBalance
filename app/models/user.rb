@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   attr_accessor :invitation_token
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  validate :invitation
+  validate :validate_invitations
   has_many :apps
   has_one :invitation
   before_create :generate_auth_token
@@ -38,14 +38,15 @@ class User < ActiveRecord::Base
   end
   private
   def assign_invitation
-    invitation = Invitation.where(token: invitation_token).take
+    invitation = Invitation.where(token: self.invitation_token).take
     invitation.user_id = self.id
+    byebug
     invitation.save
   end
-  def invitation
-    invitation = Invitation.where(token: invitation_token).take
-    unless (invitation && invitation.user_id == nil)
-      errors.add(:Invitation, " was invalid")
+  def validate_invitations
+    invitation = Invitation.where(token: self.invitation_token, user_id: nil).take
+    unless (invitation)
+      errors.add(:invitation, " was invalid")
     end
   end
 

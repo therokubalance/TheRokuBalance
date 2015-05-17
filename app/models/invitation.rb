@@ -10,8 +10,7 @@
 #
 
 class Invitation < ActiveRecord::Base
-  attr_accessor :email
-  validates :email, presence: true
+
   before_create :generate_token
 
   protected
