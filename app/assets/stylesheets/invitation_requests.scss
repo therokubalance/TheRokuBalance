@@ -1,0 +1,16 @@
+.btn-request-invitation {
+  $b: #34C67F;
+  background-color: $b;
+  border-color: darken($b,10%);
+  border-radius: 0;
+  color: white;
+  padding: 15px 30px;
+  letter-spacing: 1px;
+  border: none;
+  &:hover {
+    color: white;
+    background-color: lighten($b,15%);
+    border-color: $b;
+  }
+
+}

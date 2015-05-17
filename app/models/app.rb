@@ -12,7 +12,7 @@
 #
 
 class App < ActiveRecord::Base
-  SUBDOMAIN_REGEX = /\A[a-z]{2,}[a-z0-9-_]+\Z/i
+  SUBDOMAIN_REGEX = /\A[a-z]{2,}[a-z0-9\-_]+\Z/i
 
   THEROKU_SWITCHER_PATH = ENV["THEROKU_SWITCHER_PATH"] || "tmp/theroku_switcher.conf"
   SITES_ENABLED_HALF_1 = ENV["SITES_ENABLED_HALF_1"] || "tmp/sites_enabled_half_1"
