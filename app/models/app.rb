@@ -25,6 +25,9 @@ class App < ActiveRecord::Base
 
   APPS_AVAILABLE_DIR = ENV["APPS_AVAILABLE_DIR"] || "tmp/apps_available"
   APPS_ENABLED_DIR = ENV["APPS_ENABLED_DIR"] || "tmp/apps_enabled"
+  def switch
+    puts "switched"
+  end
 
   def strip_herokudomain
     self.url1.gsub!('.herokuapp.com','') if self.url1 != nil
