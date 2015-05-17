@@ -25,15 +25,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :apps
-
+  before_create :generate_auth_token
 
   def generate_auth_token
-    return if auth_token.present?
-    self.auth_token = generated_token
-  end
-
-  def generated_token
-    SecureRandom.uuid.gsub(/\-/,'')
+    begin
+      self.auth_token = SecureRandom.urlsafe_base64
+    end while User.exists?(auth_token: self.auth_token)
   end
 
 
