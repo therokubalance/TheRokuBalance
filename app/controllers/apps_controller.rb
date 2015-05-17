@@ -33,6 +33,8 @@ class AppsController < ApplicationController
 
   def destroy
     @app.destroy
+    flash[:notice] = "Application Deleted"
+    redirect_to apps_path
   end
 
   private

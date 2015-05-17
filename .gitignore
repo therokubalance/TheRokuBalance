@@ -12,4 +12,8 @@
 !/log/.keep
 /tmp/*
 !/tmp/.keep
+!/tmp/theroku_switcher.conf
 .theroku
+# TODO: not working inclusion of sites_enabled_half_* :|
+#!/tmp/sites_enabled_half_1/.keep
+#!/tmp/sites_enabled_half_2/.keep
