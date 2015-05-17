@@ -6,8 +6,6 @@ module Api
     protected
     def authenticate_token!
       authenticate_or_request_with_http_token do |token, options|
-        puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-        puts token
         @current_user = User.find_by(auth_token: token)
       end
     end
