@@ -36,12 +36,12 @@ class App < ActiveRecord::Base
     if current.chomp.strip == "#1"
       File.open(THEROKU_SWITCHER_PATH, 'w') do |f|
         f.puts "#2"
-        f.puts "include #{SITES_ENABLED_HALF_2};"
+        f.puts "include #{File.join(SITES_ENABLED_HALF_2,'*')};"
       end
     else
       File.open(THEROKU_SWITCHER_PATH, 'w') do |f|
         f.puts "#1"
-        f.puts "include #{SITES_ENABLED_HALF_1};"
+        f.puts "include #{File.join(SITES_ENABLED_HALF_1,'*')};"
       end
     end
     App.reload_nginx
