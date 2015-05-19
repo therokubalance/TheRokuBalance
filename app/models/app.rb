@@ -17,6 +17,7 @@ class App < ActiveRecord::Base
   THEROKU_SWITCHER_PATH = ENV["THEROKU_SWITCHER_PATH"] || "tmp/theroku_switcher.conf"
   SITES_ENABLED_HALF_1 = ENV["SITES_ENABLED_HALF_1"] || "tmp/sites_enabled_half_1"
   SITES_ENABLED_HALF_2 = ENV["SITES_ENABLED_HALF_2"] || "tmp/sites_enabled_half_2"
+  NGINX_PATH = ENV["NGINX_PATH"] || "/usr/sbin/nginx"
 
   validates :user, presence: true
   validates :url1, presence: true, format: {with: SUBDOMAIN_REGEX }
@@ -32,6 +33,7 @@ class App < ActiveRecord::Base
   end
 
   def self.switch_apps
+    puts "changing #{THEROKU_SWITCHER_PATH}"
     current = File.open(THEROKU_SWITCHER_PATH, &:readline)
     if current.chomp.strip == "#1"
       File.open(THEROKU_SWITCHER_PATH, 'w') do |f|
@@ -98,7 +100,7 @@ class App < ActiveRecord::Base
   end
 
   def self.reload_nginx
-    system "nginx -s reload"
+    system "#{NGINX_PATH} -s reload"
   end
 
   def site_conf_file(half,subdomain)
