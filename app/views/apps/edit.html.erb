@@ -6,18 +6,19 @@
       </div>
       <%= render "apps/apps_navigation" %>
     </div>
-  <div class="col-xs-6 col-md-9">
-    <div class="title-wrapper">
-      <%= link_to app_path(@app),
-          class: "btn btn-xs btn-danger pull-right",
-            method: :delete,
-            data: { confirm: "Are you sure you want to delete #{@app.subdomain}?" } do %>
-        Borrar
-      <% end %>
+    <div class="col-xs-6 col-md-9">
       <div class="title-wrapper">
-        <h2>Editing <strong><%= @app.subdomain %></strong> </h2>
+        <%= link_to app_path(@app),
+            class: "btn btn-xs btn-danger pull-right",
+              method: :delete,
+              data: { confirm: "Are you sure you want to delete #{@app.subdomain}?" } do %>
+          Delete
+        <% end %>
+        <div class="title-wrapper">
+          <h2>Editing <strong><%= @app.subdomain %></strong> </h2>
+        </div>
+        <%= render "apps/form" %>
       </div>
-      <%= render "apps/form" %>
     </div>
   </div>
 </div>
