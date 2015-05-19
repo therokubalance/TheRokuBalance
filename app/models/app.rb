@@ -129,7 +129,7 @@ server {
     active_url = Theroku.active_url
     App.all.each do |a|
       response = Net::HTTP.new("#{a.send(active_url)}.herokuapp.com",80).get "/"
-      puts "PING #{a.send(active_url)}.herokuapp.com : #{response.code}"
+      #puts "PING #{a.send(active_url)}.herokuapp.com : #{response.code}"
     end
   end
 end
