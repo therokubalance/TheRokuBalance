@@ -40,11 +40,13 @@ class App < ActiveRecord::Base
         f.puts "#2"
         f.puts "include #{File.join(SITES_ENABLED_HALF_2,'*')};"
       end
+      Theroku.active_url = "url2"
     else
       File.open(THEROKU_SWITCHER_PATH, 'w') do |f|
         f.puts "#1"
         f.puts "include #{File.join(SITES_ENABLED_HALF_1,'*')};"
       end
+      Theroku.active_url = "url1"
     end
     App.reload_nginx
   end
@@ -121,5 +123,13 @@ server {
   }
 }
     )
+  end
+
+  def self.ping_apps
+    active_url = Theroku.active_url
+    App.all.each do |a|
+      response = Net::HTTP.new("#{a.send(active_url)}.herokuapp.com",80).get "/"
+      #puts "PING #{a.send(active_url)}.herokuapp.com : #{response.code}"
+    end
   end
 end

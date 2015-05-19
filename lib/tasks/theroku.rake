@@ -5,4 +5,8 @@ namespace :theroku do
     App.switch_apps
     Rails.logger.info "... Apps switched"
   end
+
+  task ping_apps: :environment do
+    App.ping_apps
+  end
 end
